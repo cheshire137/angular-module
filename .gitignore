@@ -2,7 +2,10 @@ node_modules
 dist
 .tmp
 .sass-cache
+app/components
 app/bower_components
 .idea
 *.iml
 *.iws
+libpeerconnection.log
+
