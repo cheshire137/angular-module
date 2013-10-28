@@ -9,6 +9,8 @@ files = [
   JASMINE_ADAPTER,
   'app/components/angular/angular.js',
   'app/components/angular-mocks/angular-mocks.js',
+  'app/components/jquery/jquery.js',
+  'app/components/atmosphere-javascript/modules/jquery/src/main/webapp/jquery/jquery.atmosphere.js',
   'app/scripts/*.js',
   'app/scripts/**/*.js',
   '.tmp/scripts/**/*.js',

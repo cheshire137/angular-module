@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     yeoman: yeomanConfig,
     watch: {
       haml: {
-        files: ['<%= yeoman.app %>/views/{,*/}*.haml'],
+        files: ['<%= yeoman.app %>/*.haml', '<%= yeoman.app %>/views/{,*/}*.haml'],
         tasks: ['haml:dist']
       },
       coffee: {
@@ -148,7 +148,14 @@ module.exports = function (grunt) {
             src: '{,*/}*.haml',
             dest: '.tmp/views',
             ext: '.html'
-          }
+          },
+            {
+                expand: true,
+                cwd: '<%= yeoman.app %>',
+                src: '*.haml',
+                dest: '.tmp',
+                ext: '.html'
+            }
         ]
       }
     },

@@ -1,0 +1,7 @@
+camfire.app.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/', {templateUrl: 'root_template'});
+  $routeProvider.when('/register', {templateUrl: 'registration/new_template', controller: 'RegistrationsController'});
+  $routeProvider.when('/login', {templateUrl: 'sessions/new_template', controller: 'SessionsController'});
+  $routeProvider.when('/manage', {templateUrl: 'sessions/manage_template', controller: 'SessionsController'});
+  $routeProvider.otherwise({redirectTo: '/'});
+}]);
