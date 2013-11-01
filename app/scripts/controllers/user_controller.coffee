@@ -1,5 +1,6 @@
 namespace 'camfire', (exports) ->
   class exports.UserCtrl
+#    constructor: ($scope, userService) ->
     constructor: ($scope, userService) ->
       $scope.userService = userService
       $scope.isLoggedIn = userService.isLoggedIn.val

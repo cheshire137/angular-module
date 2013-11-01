@@ -1,7 +1,10 @@
 {
-  "name": "yeomanAngularHaml",
+  "name": "camfire",
   "version": "0.0.0",
   "dependencies": {
+    "async": "https://github.com/caolan/async.git",
+    "grunt-ng-constant": "https://github.com/werk85/grunt-ng-constant.git",
+    "requirejs": "~2.1.9",
     "jquery": "~2.0.3",
     "atmosphere-javascript": "https://github.com/Atmosphere/atmosphere-javascript.git",
     "angular": "~1.0.5",

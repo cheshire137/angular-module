@@ -16,7 +16,7 @@
             %link{:href => "styles/bootstrap.css", :rel => "stylesheet"}
               %link{:href => "styles/main.css", :rel => "stylesheet"}
                 / endbuild
-  %body{"ng-app" => "yeomanAngularHamlApp"}
+  %body
     /[if lt IE 7]
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     /[if lt IE 9]
@@ -24,13 +24,16 @@
       <script src="components/json3/lib/json3.min.js"></script>
     / Add your site or application content here
     .container{"ng-view" => ""}
+    -#%div{'ng-controller' => 'camfire.ConnectivityCtrl'}
     %script{:src => "components/angular/angular.js"}
     %script{:src => "components/angular-resource/angular-resource.js"}
     %script{:src => "components/angular-cookies/angular-cookies.js"}
     %script{:src => "components/angular-sanitize/angular-sanitize.js"}
+    %script{:src => "components/jquery/jquery.js"}
+    %script{:src => "components/async/lib/async.js"}
+    %script{:src => "components/requirejs/require.js", 'data-main' => 'scripts/main'}
+    %script{:src => "components/atmosphere-javascript/modules/jquery/src/main/webapp/jquery/jquery.atmosphere.js", 'data-main' => 'scripts/main'}
     / build:js scripts/scripts.js
-    %script{:src => "scripts/app.js"}
-    %script{:src => "scripts/controllers/main.js"}
     / endbuild
     / Google Analytics: change UA-XXXXX-X to be your site's ID.
     :javascript
@@ -38,3 +41,4 @@
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
       g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));
+

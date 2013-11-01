@@ -1,8 +1,38 @@
-.hero-unit
-  %h1 'Allo, 'Allo!
-  %p You now have
-  %ul
-    %li{"ng-repeat"=>"thing in awesomeThings"}
-      {{thing}}
-  %p installed.
-  %h3 Enjoy coding! - Yeoman
+-#.hero-unit
+-#  %h1 'Allo, 'Allo!
+-#  %p You now have
+-#  %ul
+-#    %li{"ng-repeat"=>"thing in awesomeThings"}
+-#      {{thing}}
+-#  %p installed.
+-#  %h3 Enjoy coding! - Yeoman
+
+.page-container
+  .container
+    -#%bootstrap-modal
+  %div{'ng-controller' => 'camfire.UserCtrl'}
+    -#= render 'layouts/main_navbar'
+  .container
+    -#= render 'layouts/flash_messages'
+    %div{'ng-controller' => 'camfire.ConnectivityCtrl'}
+    .media
+      %div.remote{'ng-controller' => 'camfire.RemoteMediaCtrl'}
+        .stream-determination
+          .no-available-streams{'ng-hide' => 'areStreams'}
+            Doh! Sorry, no one is broadcasting!
+          .available-streams{'ng-show' => 'size(availableStreamInfos)'}
+            %available-stream-info{'ng-repeat' => '(id, availableStreamInfo) in availableStreamInfos'}
+          .connecting-streams{'ng-show' => 'size(connectingStreamInfos)'}
+            %connecting-stream-info{'ng-repeat' => '(id, connectingStreamInfo) in connectingStreamInfos'}
+        .subscribed-streams{'ng-show' => 'areStreams'}
+          %remote-stream{'ng-repeat' => '(id, remoteStream) in subscribedStreamInfos'}
+      -#- if user_signed_in?
+      %div.local.pull-right{'ng-controller' => 'camfire.LocalMediaCtrl', 'ng-show' => 'isLoggedIn'}
+        %user-media{'ng-repeat' => 'localStream in localStreams'}
+        .controls
+          %button#start-local-video{'ng-show' => 'state == "ready"', 'ng-click' => 'start()'}
+            start
+          %button#start-remote-video{'ng-show' => 'state == "started"', 'ng-click' => 'broadcast()'}
+            broadcast
+          %button#start-remote-video{'ng-show' => 'state == "broadcasting"', 'ng-click' => 'stop()'}
+            stop

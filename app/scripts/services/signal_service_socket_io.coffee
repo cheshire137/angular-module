@@ -1,6 +1,6 @@
 namespace 'camfire', (exports) ->
   class exports.SignalServiceSocketIo
-    constructor: (@$rootScope, @configurationService, @socketService, @utilService, @peerConnectionService,
+    constructor: (@$rootScope, @config, @socketService, @utilService, @peerConnectionService,
                   @localMediaService, @remoteMediaService) ->
 
     init: ->

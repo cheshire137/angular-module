@@ -4,6 +4,7 @@ var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 
+
 module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -18,6 +19,8 @@ module.exports = function (grunt) {
     yeomanConfig.app = require('./component.json').appPath || yeomanConfig.app;
   } catch (e) {
   }
+
+  grunt.loadNpmTasks('grunt-ng-constant');
 
   grunt.initConfig({
     yeoman: yeomanConfig,
@@ -301,12 +304,54 @@ module.exports = function (grunt) {
         ]
       }
     }
+      ,
+      ngconstant: {
+          options: {
+              space: '  '
+          },
+
+          // targets
+          development: [{
+              dest: '<%= yeoman.app %>/scripts/config.js',
+              wrap: '"use strict";\n\n <%= __ngModule %>',
+              name: 'config',
+              constants: {
+                  ENV: 'development'
+              }
+          }],
+          production: [{
+              dest: '<%= yeoman.dist %>/scripts/config.js',
+              wrap: '"use strict";\n\n <%= __ngModule %>',
+              name: 'config',
+              constants: {
+                  ENV: 'production'
+              }
+          }]
+      }
   });
 
   grunt.renameTask('regarde', 'watch');
 
+//  grunt.registerTask('indexDir', 'Create a json directory listing of script folders.', function() {
+//      var indexFiles = function(dir) {
+//          var files = grunt.file.expand({cwd: yeomanConfig.app + '/scripts'}, dir + '/**/*.{js,coffee}');
+//          files = files.map(function(item) {
+//              return item.replace(/\.[^/.]+$/, "")
+//          });
+//          grunt.file.write('.tmp/scripts/' + dir +  '/dir-index.json', JSON.stringify(files));
+//      };
+//
+//      indexFiles('lib');
+//      indexFiles('services');
+//      indexFiles('controllers');
+//      indexFiles('directives');
+//      indexFiles('config');
+//  });
+
   grunt.registerTask('server', [
+//    'indexDir',
     'clean:server',
+     'ngconstant:development',
     'coffee:dist',
     'haml:dist',
     'compass:server',
@@ -327,6 +372,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:production',
     'jshint',
     'test',
     'coffee',
@@ -346,3 +392,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['build']);
 };
+
+
+
+

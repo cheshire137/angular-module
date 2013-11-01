@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('yeomanAngularHamlApp'));
+  beforeEach(module(camfire.APP_NAME));
 
   var MainCtrl,
     scope;
