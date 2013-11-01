@@ -56,5 +56,8 @@ Launch the server:
 Edit app/view/main.html.haml and watch the LiveReload goodness!
 
 
+## Generate compiled single script
+
+    node /usr/local/bin/r.js -o name=main out=main-built.js baseUrl=.
 
 
