@@ -24,7 +24,6 @@
       <script src="components/json3/lib/json3.min.js"></script>
     / Add your site or application content here
     .container{"ng-view" => ""}
-    -#%div{'ng-controller' => 'camfire.ConnectivityCtrl'}
     %script{:src => "components/angular/angular.js"}
     %script{:src => "components/angular-resource/angular-resource.js"}
     %script{:src => "components/angular-cookies/angular-cookies.js"}
@@ -32,7 +31,11 @@
     %script{:src => "components/jquery/jquery.js"}
     %script{:src => "components/async/lib/async.js"}
     %script{:src => "components/requirejs/require.js", 'data-main' => 'scripts/main'}
-    %script{:src => "components/atmosphere-javascript/modules/jquery/src/main/webapp/jquery/jquery.atmosphere.js", 'data-main' => 'scripts/main'}
+    %script{:src => "components/atmosphere-javascript/modules/jquery/src/main/webapp/jquery/jquery.atmosphere.js"}
+    %script{:src => "components/angular-spinner/angular-spinner.js"}
+    %script{:src => "components/jsdebug-rails/lib/generators/jsdebug/install/templates/jsdebug.js"}
+    %script{:src => "scripts/lib/adapter.js"}  // This needs to be put in a component
+
     / build:js scripts/scripts.js
     / endbuild
     / Google Analytics: change UA-XXXXX-X to be your site's ID.

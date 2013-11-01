@@ -1,32 +1,5 @@
-#async.series({
-#  before: (callback) ->
-#    callback(null, ['lib/namespace', 'lib/adapter', 'lib/jsdebug', 'config', 'app'])
-#  services: (callback) ->
-#    $.get "scripts/services/dir-index.json", (data) ->
-#      callback(null, data)
-#  controllers: (callback) ->
-#    $.get "scripts/controllers/dir-index.json", (data) ->
-#      callback(null, data)
-#  directives: (callback) ->
-#    $.get "scripts/directives/dir-index.json", (data) ->
-#      callback(null, data)
-#  config: (callback) ->
-#    $.get "scripts/config/dir-index.json", (data) ->
-#      callback(null, data)
-#  after: (callback) ->
-#    callback(null, [])
-#}, (err, results) ->
-#
-#  require([],  -> angular.bootstrap(document, [camfire.APP_NAME]))
-#)
-
-#includes = [].concat.apply([],
-#  [results.before, results.services, results.controllers, results.directives, results.after])
-#require(includes, ->)
-#angular.bootstrap(document, ['camfire'])
-
 require([
-  'lib/namespace','lib/adapter','lib/jsdebug',
+  'lib/namespace',
   'config',
   'config/development',
   'app',
