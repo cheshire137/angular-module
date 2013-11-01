@@ -1,6 +1,6 @@
 namespace 'camfire', (exports) ->
   class exports.LocalMediaCtrl
-    constructor: ($scope, config, userService, peerConnectionService, localMediaService) ->
+    constructor: ($scope, configurationService, userService, peerConnectionService, localMediaService) ->
       $scope.localStreams = localMediaService.localStreams
       $scope.state = 'ready'
 
