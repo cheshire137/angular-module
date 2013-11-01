@@ -6,6 +6,7 @@
     "grunt-ng-constant": "https://github.com/werk85/grunt-ng-constant.git",
     "angular-spinner": "https://github.com/urish/angular-spinner.git",
     "jsdebug-rails": "https://github.com/jeremygpeterson/jsdebug-rails.git" ,
+    "bootstrap-modal": "https://github.com/jschr/bootstrap-modal.git",
     "requirejs": "~2.1.9",
     "jquery": "~2.0.3",
     "atmosphere-javascript": "https://github.com/Atmosphere/atmosphere-javascript.git",
