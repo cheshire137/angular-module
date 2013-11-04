@@ -1,0 +1,20 @@
+describe "Unit:TemplateService", ->
+  beforeEach(->
+    angular.mock.module('Camfire')
+  )
+
+  it "should contain an templateService", inject((templateService) ->
+    expect(templateService).toNotEqual(null)
+  )
+
+describe "Unit:TemplateService:", ->
+  beforeEach(->
+    angular.mock.module('Camfire')
+  )
+
+  it "should find the correct index when one exists", inject((templateService) ->
+  )
+
+
+
+

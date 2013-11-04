@@ -20,11 +20,16 @@ module.exports = function (grunt) {
   } catch (e) {
   }
 
+  grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-ng-constant');
 
   grunt.initConfig({
     yeoman: yeomanConfig,
     watch: {
+        jade: {
+            files: ['<% yeoman.app %>/*.jade', '<%= yeoman.app %>/views/{,*/}*.jade'],
+            tasks: ['jade:dist']
+        },
       haml: {
         files: ['<%= yeoman.app %>/*.haml', '<%= yeoman.app %>/views/{,*/}*.haml'],
         tasks: ['haml:dist']
@@ -139,6 +144,37 @@ module.exports = function (grunt) {
         ]
       }
     },
+
+      jade: {
+          dist: {
+              options: {
+                  pretty: true
+              },
+              files: [
+                  {
+                      expand: true,
+                      cwd: '<%= yeoman.app %>/views',
+                      src: '{,*/}*.jade',
+                      dest: '.tmp/views',
+                      ext: '.html'
+                  },
+                  {
+                      expand: true,
+                      cwd: '<%= yeoman.app %>',
+                      src: '*.jade',
+                      dest: '.tmp',
+                      ext: '.html'
+                  }
+              ]
+//              files: [{
+//                  expand: true,
+//                  cwd: '<%= yeoman.app %>',
+//                  dest: '.tmp',
+//                  src: '*.jade',
+//                  ext: '.html'
+//              }]
+          }
+      },
     haml: {
       options: {
         language: 'ruby'
@@ -354,6 +390,7 @@ module.exports = function (grunt) {
      'ngconstant:development',
     'coffee:dist',
     'haml:dist',
+    'jade:dist',
     'compass:server',
     'livereload-start',
     'connect:livereload',
@@ -377,6 +414,7 @@ module.exports = function (grunt) {
     'test',
     'coffee',
     'compass:dist',
+    'jade:dist',
     'useminPrepare',
     'imagemin',
     'cssmin',
