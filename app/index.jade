@@ -1,9 +1,43 @@
+//!!! 5
+//html.no-js
+////
+//     <![endif]
+//head
+//    meta(charset='utf-8')
+//    meta(content='IE=edge,chrome=1', http-equiv='X-UA-Compatible')
+//    title
+//    meta(content='', name='description')
+//    meta(content='width=device-width', name='viewport')
+////
+//   Place favicon.ico and apple-touch-icon.png in the root directory
+////
+//   build:css styles/main.css
+//    link(href='styles/bootstrap.css', rel='stylesheet')
+//    link(href='styles/main.css', rel='stylesheet')
+////
+//   endbuild
+//body
+////if lt IE 7
+//  p.chromeframe
+//    | You are using an outdated browser.
+//    a(href='http://browsehappy.com/') Upgrade your browser today
+//    | or
+//    a(href='http://www.google.com/chromeframe/?redirect=true') install Google Chrome Frame
+//    | to better experience this site.
+////if lt IE 9
+//  script(src='components/es5-shim/es5-shim.js')
+//  script(src='components/json3/lib/json3.min.js')
+
+
+
+
+
 !!! 5
 html(lang='en')
     head
         meta(charset='utf-8')
         title Angular Auth Example
-        link(rel='stylesheet', href='css/app.css')
+        link(rel='stylesheet', href='styles/app.css')
         link(href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css", rel="stylesheet")
         link(href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css", rel="stylesheet")
 
@@ -13,6 +47,7 @@ html(lang='en')
                 window.location = window.location.href.replace(/#.*/, '');
             }
     body(data-ng-cloak)
+        base(href="/index.html")
 
         .navbar(data-ng-controller="NavCtrl")
             .navbar-inner
@@ -37,21 +72,38 @@ html(lang='en')
                         span.label(data-ng-class='{"label-info": user.role.title == userRoles.user.title, "label-success": user.role.title == userRoles.admin.title}') {{ user.role.title }}
 
         .container
+                //.container(ng-view='')
             div(data-ng-view='ng-view')
             .alert.alert-error(data-ng-bind="error", data-ng-show="error")
+            // Add your site or application content here
 
         script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js')
 
         // Partial views... Load up front to make transitions smoother
         script(type="text/ng-template", id="404")
-            include partials/404
+            include views/partials/404
         script(type="text/ng-template", id="admin")
-            include partials/admin
+            include views/partials/admin
         script(type="text/ng-template", id="home")
-            include partials/home
+            include views/partials/home
         script(type="text/ng-template", id="login")
-            include partials/login
+            include views/partials/login
         script(type="text/ng-template", id="private")
-            include partials/private
+            include views/partials/private
         script(type="text/ng-template", id="register")
-            include partials/register
+            include views/partials/register
+
+        script(src='components/angular/angular.js')
+        script(src='components/angular-resource/angular-resource.js')
+        script(src='components/angular-cookies/angular-cookies.js')
+        script(src='components/angular-sanitize/angular-sanitize.js')
+        script(src='components/jquery/jquery.js')
+        script(src='components/async/lib/async.js')
+        script(data-main='scripts/main', src='components/requirejs/require.js')
+        script(src='components/atmosphere-javascript/modules/jquery/src/main/webapp/jquery/jquery.atmosphere.js')
+        script(src='components/angular-spinner/angular-spinner.js')
+        script(src='components/jsdebug-rails/lib/generators/jsdebug/install/templates/jsdebug.js')
+        script(src='components/bootstrap-modal/js/bootstrap-modal.js')
+        script(src='components/bootstrap-modal/js/bootstrap-modalmanager.js')
+        // This needs to be put in a component
+        script(src='scripts/lib/adapter.js')

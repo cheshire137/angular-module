@@ -7,38 +7,33 @@ namespace NAMESPACE, (exports) ->
   exports.app = angular.module(APP_NAME, ['config', 'ngCookies']).config ($routeProvider, $locationProvider, $httpProvider) ->
     access = routingConfig.accessLevels
     $routeProvider.when "/",
-      templateUrl: "views/partials/home.html"
+      templateUrl: "home"
       controller: "HomeCtrl"
       access: access.user
 #      access: access.anon
 
     $routeProvider.when "/login",
-      templateUrl: "views/partials/login.html"
-#      templateUrl: "login"
+      templateUrl: "login"
       controller: "LoginCtrl"
       access: access.anon
 
     $routeProvider.when "/register",
-      templateUrl: "views/partials/register.html"
-#      templateUrl: "register"
+      templateUrl: "register"
       controller: "RegisterCtrl"
       access: access.anon
 
     $routeProvider.when "/private",
-      templateUrl: "views/partials/private.html"
-#      templateUrl: "private"
+      templateUrl: "private"
       controller: "PrivateCtrl"
       access: access.user
 
     $routeProvider.when "/admin",
-      templateUrl: "views/partials/admin.html"
-#      templateUrl: "admin"
+      templateUrl: "admin"
       controller: "AdminCtrl"
       access: access.admin
 
     $routeProvider.when "/404",
-      templateUrl: "views/partials/404.html"
-#      templateUrl: "404"
+      templateUrl: "404"
       access: access.public
 
     $routeProvider.otherwise redirectTo: "/404"
@@ -56,8 +51,6 @@ namespace NAMESPACE, (exports) ->
         promise.then success, error
     ]
     $httpProvider.responseInterceptors.push interceptor
-
-
 
 
 
@@ -86,5 +79,6 @@ namespace NAMESPACE, (exports) ->
         else
           $location.path "/login"
   ]
+
 
 

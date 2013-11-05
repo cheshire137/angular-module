@@ -16,18 +16,19 @@ module.exports = function (grunt) {
   };
 
   try {
-    yeomanConfig.app = require('./component.json').appPath || yeomanConfig.app;
+      yeomanConfig.app = require('./component.json').appPath || yeomanConfig.app;
   } catch (e) {
   }
 
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-ng-constant');
+  var modRewrite = require('connect-modrewrite');
 
   grunt.initConfig({
     yeoman: yeomanConfig,
     watch: {
         jade: {
-            files: ['<% yeoman.app %>/*.jade', '<%= yeoman.app %>/views/{,*/}*.jade'],
+            files: ['<%= yeoman.app %>/{,*/}*.jade'],
             tasks: ['jade:dist']
         },
       haml: {
@@ -65,13 +66,16 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          middleware: function (connect) {
-            return [
-              lrSnippet,
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, yeomanConfig.app)
-            ];
-          }
+            middleware: function (connect) {
+                return [
+                    modRewrite([
+                        '!\\.html|\\.js|\\.css|\\.png$ /index.html [L]'
+                    ]),
+                    lrSnippet,
+                    mountFolder(connect, '.tmp'),
+                    mountFolder(connect, yeomanConfig.app)
+                ];
+            }
         }
       },
       test: {
@@ -166,13 +170,6 @@ module.exports = function (grunt) {
                       ext: '.html'
                   }
               ]
-//              files: [{
-//                  expand: true,
-//                  cwd: '<%= yeoman.app %>',
-//                  dest: '.tmp',
-//                  src: '*.jade',
-//                  ext: '.html'
-//              }]
           }
       },
     haml: {

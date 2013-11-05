@@ -1,5 +1,5 @@
 {
-  "name": "yeoman-angular-haml",
+  "name": "camfire-angular-plugin",
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
@@ -17,6 +17,7 @@
     "grunt-contrib-imagemin": "~0.1.4",
     "grunt-contrib-livereload": "~0.1.2",
     "grunt-bower-requirejs": "~0.5.0",
+    "connect-modrewrite": "0.5.11",
     "grunt-usemin": "~0.1.12",
     "grunt-regarde": "~0.1.1",
     "grunt-rev": "~0.1.0",
