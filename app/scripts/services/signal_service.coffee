@@ -8,12 +8,13 @@ namespace 'camfire', (exports) ->
                   @localMediaService,
                   @remoteMediaService) ->
 
-    init: ->
+    init: (callback) ->
       debug.debug("Initializing signal service...")
       @socketService.request.onMessage = (rs) =>
         debug.debug(rs.responseBody)
         @$rootScope.$apply =>
           @signal(rs.responseBody)
+      callback()
 
     signal: (msg) =>
       debug.debug("Attempting to parse signal: " + msg)

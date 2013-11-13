@@ -9,8 +9,8 @@ namespace NAMESPACE, (exports) ->
     $routeProvider.when "/",
       templateUrl: "home"
       controller: "HomeCtrl"
-      access: access.user
-#      access: access.anon
+#      access: access.user
+      access: access.anon
 
     $routeProvider.when "/login",
       templateUrl: "login"

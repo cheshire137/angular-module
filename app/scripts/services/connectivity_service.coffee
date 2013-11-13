@@ -26,27 +26,32 @@ namespace 'camfire', (exports) ->
     }
 
     init: ->
-      @initSocket()
-      @signalService.init()
-      @socketService.subscribeToSocket()
-#      @initPeerConnection()
+      async.series
+        initSocket: (callback) =>
+          @socketService.init(callback)
 
-    initPeerConnection: ->
+        initSignal: (callback) =>
+          @signalService.init(callback)
+
+        subscribeToSocket: (callback) =>
+          @socketService.subscribeToSocket(callback)
+
+#        initPeerConnection: (callback) =>
+#          @initPeerConnection(callback)
+
+      , (err, results) =>
+        # TODO: Add in error checking logic
+        @status.isSocketConnected = true
+#        @status.isPeerConnectionConnected = true
+
+    initPeerConnection: (callback) ->
       @peerConnectionService.createPeerConnection(@configurationService.peerConnectionConfig)
       @peerConnectionService.createOffer(@configurationService.sdpConstraints)
       @peerConnectionService.setOnAddStream(@remoteMediaService.onAddStream)
       @peerConnectionService.setOnRemoveStream(@remoteMediaService.onRemoveStream)
-      @peerConnectionConnected()
-
-    peerConnectionConnected: ->
-      @status.isPeerConnectionConnected = true
-#      @initSocket()
-
-    initSocket: ->
-      @socketService.init()
+      callback()
 
     socketConnected: ->
-      @initPeerConnection()
       @status.isSocketConnected = true
 
     socketDisconnected: ->

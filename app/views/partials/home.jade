@@ -1,2 +1,29 @@
-h1 Hello
-p This view is visible to logged in users.
+//h1 Hello
+//p This view is visible to logged in users.
+
+.page-container
+    .container
+        bootstrap-modal
+        div(ng-controller='camfire.UserCtrl')
+        .container
+            div(ng-controller='camfire.ConnectivityCtrl')
+//            .media
+//                .remote(ng-controller='camfire.RemoteMediaCtrl')
+//                    .stream-determination
+//                        .no-available-streams(ng-hide='areStreams')
+//                            | Doh! Sorry, no one is broadcasting!
+//                        .available-streams(ng-show='size(availableStreamInfos)')
+//                            available-stream-info(ng-repeat='(id, availableStreamInfo) in availableStreamInfos')
+//                        .connecting-streams(ng-show='size(connectingStreamInfos)')
+//                            connecting-stream-info(ng-repeat='(id, connectingStreamInfo) in connectingStreamInfos')
+//                    .subscribed-streams(ng-show='areStreams')
+//                        remote-stream(ng-repeat='(id, remoteStream) in subscribedStreamInfos')
+//                .local.pull-right(ng-controller='camfire.LocalMediaCtrl', ng-show='isLoggedIn')
+//                    user-media(ng-repeat='localStream in localStreams')
+//                    .controls
+//                        button#start-local-video(ng-click='start()', ng-show='state == "ready"')
+//                            | start
+//                        button#start-remote-video(ng-click='broadcast()', ng-show='state == "started"')
+//                            | broadcast
+//                        button#start-remote-video(ng-click='stop()', ng-show='state == "broadcasting"')
+//                            | stop

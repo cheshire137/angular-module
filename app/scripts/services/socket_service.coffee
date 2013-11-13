@@ -12,7 +12,7 @@ namespace 'camfire', (exports) ->
     onDisconnectCallback: ->
     onErrorCallback: ->
 
-    init: ->
+    init: (callback) ->
       @request =
         url: @configurationService.signalFullUrl() + "/" + @configurationService.signalResource
         contentType: "application/json"
@@ -56,7 +56,6 @@ namespace 'camfire', (exports) ->
 #            input.removeAttr("disabled").focus()
 #
 
-
       @request.onClose = (rs) =>
         debug.debug("onClose called...")
         @$rootScope.$apply =>
@@ -68,6 +67,8 @@ namespace 'camfire', (exports) ->
         @$rootScope.$apply =>
           @onErrorCallback()
 
+      callback()
+
 #    on: (eventName, callback) ->
 #      debug.debug "Registering on #{eventName} event..."
 #      @socket.on eventName, =>
@@ -76,8 +77,9 @@ namespace 'camfire', (exports) ->
 #          callback.apply @socket, args
 #
 
-    subscribeToSocket: ->
+    subscribeToSocket: (callback) ->
       @subSocket = socket.subscribe(@request)
+      callback()
 
     reconnect: ->
       debug.debug "Disconnecting..."
