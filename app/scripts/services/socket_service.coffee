@@ -78,8 +78,8 @@ namespace 'camfire', (exports) ->
 #
 
     subscribeToSocket: (callback) ->
+      @onConnectCallback = callback
       @subSocket = socket.subscribe(@request)
-      callback()
 
     reconnect: ->
       debug.debug "Disconnecting..."
@@ -92,6 +92,9 @@ namespace 'camfire', (exports) ->
 
     emitWrapped: (eventName, messageName, data, skipDataStringify = false, callback) ->
       @emit eventName, @utilService.wrapMessage(messageName, data, skipDataStringify), callback
+
+    emitWrappedSignal: (messageName, data = {}, skipDataStringify = false, callback) ->
+      @emitWrapped "signal", messageName, data, skipDataStringify, callback
 
   exports.app.service 'socketService', camfire.SocketService
 

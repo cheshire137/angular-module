@@ -1,11 +1,17 @@
 namespace 'camfire', (exports) ->
   class exports.DevelopmentConfiguration
+
     signalSecure: false
     signalUrl: window.location.hostname + ':8080'
     # Use this method to get url in form of https://url based on whether or not it should be secured
     signalFullUrl: ->
       if @signalSecure then 'https://' + @signalUrl else 'http://' + @signalUrl
     signalResource: 'signal'
+
+    sessionFullUrl: ->
+#      window.location.hostname + ':8080' + '/sessions'
+      "http://localhost:8080/sessions"
+
     log: false
     media: {
 #      audio: true
