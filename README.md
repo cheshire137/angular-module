@@ -1,18 +1,12 @@
-# Yeoman-Angular-Haml
+# angular-plugin
 
-This seed project uses Yeoman with Angular and HAML. It's just 'yo angular' with CoffeeScript and HAML instead of JavaScript and HTML. See commit history for changes to Gruntfile.js for grunt-haml.
+This project provides a front end to the camfire webrtc media server.
 
-See also: 
-
-* [generator-angular](https://github.com/yeoman/generator-angular)
-* http://jeff.konowit.ch/posts/yeoman-rails-angular/
 
 ## Assumptions
 
 * brew
 * nodejs
-* chrome
-* ruby -- uses the haml gem at compile time, and also compass
 
 ## Installation
 
@@ -24,21 +18,8 @@ And same for nodejs
     
     brew upgrade node
 
-Install yeoman:
-
-    npm install -g yo grunt-cli bower
-    
-Install haml gem:
-
-    gem install haml
-    
-Install compass for SASS support:
-
-    gem install compass
-
 Install dependencies:
     
-    cd yeoman-angular-haml
     npm install
     bower install
 
@@ -51,13 +32,4 @@ Install dependencies:
 Launch the server:
 
     grunt server
-
-
-Edit app/view/main.html.haml and watch the LiveReload goodness!
-
-
-## Generate compiled single script
-
-    node /usr/local/bin/r.js -o name=main out=main-built.js baseUrl=.
-
 
