@@ -3,6 +3,7 @@ require([
   'config',
   'config/development',
   'app',
+  'jst',
   'controllers/controllers', 'directives/directives', 'services/services', 'config/routing'
   "services/configuration_service","services/connectivity_service","services/local_media_service","services/peer_connection_service","services/remote_media_service","services/signal_service","services/socket_service","services/user_service","services/util_service",
   "controllers/connectivity_controller","controllers/local_media_controller","controllers/remote_media_controller","controllers/user_controller",
