@@ -44,8 +44,8 @@ namespace 'camfire', (exports) ->
 #        restoreOrCreateSession: (callback) =>
 #          @restoreOrCreateSession(callback)
 
-#        initPeerConnection: (callback) =>
-#          @initPeerConnection(callback)
+        initPeerConnection: (callback) =>
+          @initPeerConnection(callback)
 
       , (err, results) =>
         # TODO: Add in error checking logic
