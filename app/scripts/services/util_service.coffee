@@ -20,7 +20,6 @@ namespace 'camfire', (exports) ->
         @moveById(src, dest, @safeKey(key))
 
       parseSignal: (json) ->
-#        json = @parseJson(json)
         json = @parseJson(json)
         json.data = @parseJson(json.data)
         json

@@ -5,6 +5,8 @@ namespace NAMESPACE, (exports) ->
 
 #  exports.app = angular.module(APP_NAME, ["ngCookies"]).config("$routeProvider", "$locationProvider", "$httpProvider", ($routeProvider, $locationProvider, $httpProvider) ->
   exports.app = angular.module(APP_NAME, ['config', 'ngCookies']).config ($routeProvider, $locationProvider, $httpProvider) ->
+    $httpProvider.defaults.withCredentials = true
+
     access = routingConfig.accessLevels
     $routeProvider.when "/",
       templateUrl: "home"

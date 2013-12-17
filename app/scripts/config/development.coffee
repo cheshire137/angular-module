@@ -8,10 +8,6 @@ namespace 'camfire', (exports) ->
       if @signalSecure then 'https://' + @signalUrl else 'http://' + @signalUrl
     signalResource: 'signal'
 
-    sessionFullUrl: ->
-#      window.location.hostname + ':8080' + '/sessions'
-      "http://localhost:8080/sessions"
-
     log: false
     media: {
 #      audio: true
@@ -30,7 +26,7 @@ namespace 'camfire', (exports) ->
 #      iceServers: if browser == 'firefox' then [{"url": "stun:124.124.124.2"}] else [{"url": "stun:localhost:3478"}]
       peerConnectionContraints: {
           optional: [
-            {'DtlsSrtpKeyAgreement': true}
+            {'DtlsSrtpKeyAgreement': false}
           ]
       }
     }
