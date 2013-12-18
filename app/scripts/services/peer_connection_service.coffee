@@ -8,7 +8,9 @@ namespace 'camfire', (exports) ->
     # Factory method that creates underlying RTCPeerConnection. Allows us to overrride for testing.
     newPeerConnection: (configuration) ->
       debug.debug "Attempting to create local PeerConnection..."
-      new RTCPeerConnection(configuration)
+      pcConfig = {iceServers: configuration.iceServers}
+      pcConstraints = configuration.peerConnectionContraints
+      new RTCPeerConnection(pcConfig, pcConstraints)
 
     createPeerConnection: (configuration) ->
       @localPeerConnection = @newPeerConnection(configuration)

@@ -23,10 +23,9 @@ namespace 'camfire', (exports) ->
     autoRequestMedia: false
     peerConnectionConfig: {
       iceServers: if browser == 'firefox' then [{"url": "stun:124.124.124.2"}] else [{"url": "stun:stun.l.google.com:19302"}]
-#      iceServers: if browser == 'firefox' then [{"url": "stun:124.124.124.2"}] else [{"url": "stun:localhost:3478"}]
       peerConnectionContraints: {
           optional: [
-            {'DtlsSrtpKeyAgreement': false}
+            {'DtlsSrtpKeyAgreement': 'false'}
           ]
       }
     }
