@@ -50,8 +50,6 @@ namespace 'camfire', (exports) ->
 
       safeSessionIdHashInsert: (object, value) ->
         @safeIndexedInsert(object, 'sessionIdHash', value)
-
-
     }
 
 

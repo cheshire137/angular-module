@@ -1,36 +1,3 @@
-//!!! 5
-//html.no-js
-////
-//     <![endif]
-//head
-//    meta(charset='utf-8')
-//    meta(content='IE=edge,chrome=1', http-equiv='X-UA-Compatible')
-//    title
-//    meta(content='', name='description')
-//    meta(content='width=device-width', name='viewport')
-////
-//   Place favicon.ico and apple-touch-icon.png in the root directory
-////
-//   build:css styles/main.css
-//    link(href='styles/bootstrap.css', rel='stylesheet')
-//    link(href='styles/main.css', rel='stylesheet')
-////
-//   endbuild
-//body
-////if lt IE 7
-//  p.chromeframe
-//    | You are using an outdated browser.
-//    a(href='http://browsehappy.com/') Upgrade your browser today
-//    | or
-//    a(href='http://www.google.com/chromeframe/?redirect=true') install Google Chrome Frame
-//    | to better experience this site.
-////if lt IE 9
-//  script(src='components/es5-shim/es5-shim.js')
-//  script(src='components/json3/lib/json3.min.js')
-
-
-
-
 !!! 5
 html(lang='en')
     head
@@ -78,19 +45,6 @@ html(lang='en')
 
         script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js')
 
-        // Partial views... Load up front to make transitions smoother
-        script(type="text/ng-template", id="404")
-            include views/partials/404
-        script(type="text/ng-template", id="admin")
-            include views/partials/admin
-        script(type="text/ng-template", id="home")
-            include views/partials/home
-        script(type="text/ng-template", id="login")
-            include views/partials/login
-        script(type="text/ng-template", id="private")
-            include views/partials/private
-        script(type="text/ng-template", id="register")
-            include views/partials/register
 
         script(src='components/angular/angular.js')
         script(src='components/angular-resource/angular-resource.js')

@@ -4,7 +4,6 @@
   "dependencies": {
     "async": "https://github.com/caolan/async.git",
     "grunt-ng-constant": "https://github.com/werk85/grunt-ng-constant.git",
-    "angular-spinner": "https://github.com/urish/angular-spinner.git",
     "jsdebug-rails": "https://github.com/jeremygpeterson/jsdebug-rails.git" ,
     "bootstrap-modal": "https://github.com/jschr/bootstrap-modal.git",
     "requirejs": "~2.1.9",

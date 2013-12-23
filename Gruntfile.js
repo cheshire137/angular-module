@@ -23,10 +23,21 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jade');
     grunt.loadNpmTasks('grunt-ng-constant');
     grunt.loadNpmTasks('grunt-contrib-jst');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
     var modRewrite = require('connect-modrewrite');
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+
+//        requirejs: {
+//            compile: {
+//                options: {
+//                    baseUrl: "path/to/base",
+//                    mainConfigFile: "path/to/config.js",
+//                    out: "path/to/optimized.js"
+//                }
+//            }
+//        },
 
         jst: {
             compile: {
