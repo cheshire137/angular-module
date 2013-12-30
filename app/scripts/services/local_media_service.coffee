@@ -1,12 +1,14 @@
-namespace 'camfire', (exports) ->
-  exports.app.service 'localMediaService', ($rootScope, socketService) ->
-    {
-    # GetUserMedia success callback is here:
-    localStream: null
+define(['namespace', 'app'], ->
+  namespace 'camfire', (exports) ->
+    exports.app.service 'localMediaService', ($rootScope, socketService) ->
+      {
+      # GetUserMedia success callback is here:
+      localStream: null
 
 
-    # Right now empty object is pushed here that triggers directive
-    localStreams: []
+      # Right now empty object is pushed here that triggers directive
+      localStreams: []
 
-    sessionIdHash: null
-    }
+      sessionIdHash: null
+      }
+)

@@ -1,61 +1,63 @@
-namespace 'camfire', (exports) ->
-  class exports.ConnectivityService
-    constructor: (@$rootScope,
-                  @$http
-                  @configurationService,
-                  @socketService,
-                  @peerConnectionService,
-                  @remoteMediaService,
-                  @signalService) ->
-      @socketService.onConnectCallback = =>
-        @socketConnected()
+define(['angular', 'namespace', 'app'], ->
+  namespace 'camfire', (exports) ->
+    class exports.ConnectivityService
+      constructor: (@$rootScope,
+                    @$http
+                    @configurationService,
+                    @socketService,
+                    @peerConnectionService,
+                    @remoteMediaService,
+                    @signalService) ->
+        @socketService.onConnectCallback = =>
+          @socketConnected()
 
-      @socketService.onDisconnectCallback = =>
-        @socketDisconnected()
+        @socketService.onDisconnectCallback = =>
+          @socketDisconnected()
 
-      @socketService.onErrorCallback = =>
-        @socketDisconnected()
+        @socketService.onErrorCallback = =>
+          @socketDisconnected()
 
-    #TODO: Handle when peerconnection loses connection!
+      #TODO: Handle when peerconnection loses connection!
 
-    status: {
-      isSocketConnected: false
-      isPeerConnectionConnected: false
+      status: {
+        isSocketConnected: false
+        isPeerConnectionConnected: false
 
-      isConnected: ->
-        @isSocketConnected && @isPeerConnectionConnected
-    }
+        isConnected: ->
+          @isSocketConnected && @isPeerConnectionConnected
+      }
 
-    init: ->
-      async.series
-        initSocket: (callback) =>
-          @socketService.init(callback)
+      init: ->
+        async.series
+          initSocket: (callback) =>
+            @socketService.init(callback)
 
-        initSignal: (callback) =>
-          @signalService.init(callback)
+          initSignal: (callback) =>
+            @signalService.init(callback)
 
-        subscribeToSocket: (callback) =>
-          @socketService.subscribeToSocket(callback)
+          subscribeToSocket: (callback) =>
+            @socketService.subscribeToSocket(callback)
 
-        initPeerConnection: (callback) =>
-          @initPeerConnection(callback)
+          initPeerConnection: (callback) =>
+            @initPeerConnection(callback)
 
-      , (err, results) =>
-        # TODO: Add in error checking logic
+        , (err, results) =>
+          # TODO: Add in error checking logic
+          @status.isSocketConnected = true
+          @status.isPeerConnectionConnected = true
+
+      initPeerConnection: (callback) ->
+        @peerConnectionService.createPeerConnection(@configurationService.peerConnectionConfig)
+        @peerConnectionService.createOffer(@configurationService.sdpConstraints)
+        @peerConnectionService.setOnAddStream(@remoteMediaService.onAddStream)
+        @peerConnectionService.setOnRemoveStream(@remoteMediaService.onRemoveStream)
+        callback()
+
+      socketConnected: ->
         @status.isSocketConnected = true
-        @status.isPeerConnectionConnected = true
 
-    initPeerConnection: (callback) ->
-      @peerConnectionService.createPeerConnection(@configurationService.peerConnectionConfig)
-      @peerConnectionService.createOffer(@configurationService.sdpConstraints)
-      @peerConnectionService.setOnAddStream(@remoteMediaService.onAddStream)
-      @peerConnectionService.setOnRemoveStream(@remoteMediaService.onRemoveStream)
-      callback()
+      socketDisconnected: ->
+        @status.isSocketConnected = false
 
-    socketConnected: ->
-      @status.isSocketConnected = true
-
-    socketDisconnected: ->
-      @status.isSocketConnected = false
-
-  exports.app.service 'connectivityService', camfire.ConnectivityService
+    exports.app.service 'connectivityService', camfire.ConnectivityService
+)

@@ -1,33 +1,31 @@
-base = '../components/camfire-angular-module/'
-baseTmpScripts = base + '.tmp/scripts/'
-baseScripts = base + 'scripts/'
+define([
+  'namespace'
+#  'async'
+  'jsdebugRails'
+  'jqueryAtmosphere'
+  './app'
+  './jst',
+  './services/configuration_service'
+  './services/connectivity_service'
+  './services/socket_service'
+  './services/util_service'
+  './services/peer_connection_service'
+  './services/remote_media_service'
+  './services/local_media_service'
+  './services/signal_service'
 
-require([
-  baseScripts + 'lib/adapter',
+  './controllers/connectivity_controller',
+  './controllers/remote_media_controller',
+  './controllers/local_media_controller',
 
-  baseTmpScripts + 'jst',
-  baseTmpScripts + "services/configuration_service",
-  baseTmpScripts + "services/connectivity_service",
-  baseTmpScripts + "services/local_media_service",
-  baseTmpScripts + "services/peer_connection_service",
-  baseTmpScripts + "services/remote_media_service",
-  baseTmpScripts + "services/signal_service",
-  baseTmpScripts + "services/socket_service",
-  baseTmpScripts + "services/util_service",
-
-  baseTmpScripts + "controllers/connectivity_controller",
-  baseTmpScripts + "controllers/local_media_controller",
-  baseTmpScripts + "controllers/remote_media_controller",
-
-  baseTmpScripts + "directives/available_stream_info_directive",
-  baseTmpScripts + "directives/connecting_stream_info_directive",
-  baseTmpScripts + "directives/remote_stream_directive",
-  baseTmpScripts + "directives/template_directive",
-  baseTmpScripts + "directives/user_media_directive",
-
-  'lib/namespace',
-  'config',
-  'config/development',
-  'app',
+  './directives/available_stream_info_directive',
+  './directives/connecting_stream_info_directive',
+  './directives/remote_stream_directive',
+  './directives/template_directive',
+  './directives/user_media_directive',
 ],
-  -> angular.bootstrap(document, [camfire.APP_NAME]))
+  ->
+)
+
+
+
