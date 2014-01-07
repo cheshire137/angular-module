@@ -6,28 +6,36 @@ define(['namespace', 'app'], ->
       remoteStream: null
       remoteStreams: []
 
-      availableStreamInfos: {}
-      connectingStreamInfos: {}
+      availableStreamInfos: []
+      connectingStreamInfos: []
       subscribedStreamInfos: {}
 
       areStreams: () ->
         @utilService.size(@availableStreamInfos) || @utilService.size(@connectingStreamInfos) || @utilService.size(@subscribedStreamInfos)
 
       addAvailableStreamInfo: (data) ->
-        id = data['sessionIdHash']
-        debug.debug "Making new stream available[#{id}]..."
-        @utilService.safeSessionIdHashInsert(@availableStreamInfos, data)
-        debug.log(@availableStreamInfos)
+        debug.debug "Making stream available [#{data.label}]..."
+        @availableStreamInfos.push(data)
+
+      removeAvailableStreamInfo: (data) ->
+        debug.debug "Removing stream available [#{data.label}]..."
+        console.log(data)
+        @availableStreamInfos = @availableStreamInfos.filter (x) -> x.label != data.label
+
+      setAvailableStreamInfos: (data) ->
+        debug.debug "Setting all available streams"
+        @availableStreamInfos = data
 
       removeStreamInfo: (data) ->
         id = data['sessionIdHash']
         debug.debug "Removing stream[#{id}]..."
         delete @availableStreamInfos[id.substring(1)]
 
-      subscribe: (sessionIdHash) ->
-        debug.debug "Subscribing to stream [#{sessionIdHash}]..."
-        @utilService.moveById(@availableStreamInfos, @connectingStreamInfos, sessionIdHash.substring(1))
-        @socketService.emitWrapped "signal", "subscribe", sessionIdHash, true
+      subscribe: (label) ->
+        debug.debug "Subscribing to stream [#{label}]..."
+        streamInfo = @availableStreamInfos.filter (x) -> x.label == label
+        @connectingStreamInfos.push(streamInfo[0])
+        @socketService.emitWrapped "signal", "subscribe", label, true
 
       stop: ->
   #        debug.debug "Stopping remote media..."

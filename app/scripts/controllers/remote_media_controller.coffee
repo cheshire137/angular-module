@@ -31,8 +31,6 @@ define(['namespace'], ->
   #        $scope.remoteStreams = data
   #      , true)
 
-
-        $scope.subscribe = (sessionIdHash) ->
-          remoteMediaService.subscribe(sessionIdHash)
-
+        $scope.subscribe = (label) ->
+          remoteMediaService.subscribe(label)
 )

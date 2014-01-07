@@ -39,16 +39,16 @@ define(['namespace', 'app'], ->
           @peerConnectionService.setRemoteDescription remoteDescription
         else if json.type is "offer"
           @peerConnectionService.createAnswer(@configurationService.sdpConstraints)
-        else if (json.type is "new-stream")
-          debug.debug("Adding new stream info...")
-          @remoteMediaService.addAvailableStreamInfo(json.data)
-        else if (json.type is "remove-stream")
-          debug.debug("Removing stream info...")
-          debug.debug(json.data)
-          @remoteMediaService.removeStreamInfo(json.data)
-        else if (json.type is "session-id-hash")
-          debug.debug json.data
-          @localMediaService.sessionIdHash = json.data
+#        else if (json.type is "new-stream")
+#          debug.debug("Adding new stream info...")
+#          @remoteMediaService.addAvailableStreamInfo(json.data)
+#        else if (json.type is "remove-stream")
+#          debug.debug("Removing stream info...")
+#          debug.debug(json.data)
+#          @remoteMediaService.removeStreamInfo(json.data)
+#        else if (json.type is "session-id-hash")
+#          debug.debug json.data
+#          @localMediaService.sessionIdHash = json.data
         else
           # Unknown message
           debug.error "Invalid message!"
