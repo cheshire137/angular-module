@@ -27,7 +27,7 @@ define(['angular', 'namespace', 'app'], ->
           @isSocketConnected && @isPeerConnectionConnected
       }
 
-      init: ->
+      init: (outerCallback) ->
         async.series
           initSocket: (callback) =>
             @socketService.init(callback)
@@ -45,6 +45,7 @@ define(['angular', 'namespace', 'app'], ->
           # TODO: Add in error checking logic
           @status.isSocketConnected = true
           @status.isPeerConnectionConnected = true
+          outerCallback()
 
       initPeerConnection: (callback) ->
         @peerConnectionService.createPeerConnection(@configurationService.peerConnectionConfig)

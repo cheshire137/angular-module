@@ -19,7 +19,6 @@ define(['namespace', 'app'], ->
 
       removeAvailableStreamInfo: (data) ->
         debug.debug "Removing stream available [#{data.label}]..."
-        console.log(data)
         @availableStreamInfos = @availableStreamInfos.filter (x) -> x.label != data.label
 
       setAvailableStreamInfos: (data) ->
